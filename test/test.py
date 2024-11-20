@@ -15,7 +15,7 @@ for i in range(anzahl_durchlaeufe):
     try:
         # Startet das Skript
         process = subprocess.Popen(
-            ["python", "main.py"],  # Skriptname
+            ["python", "src/main.py"],  # Skriptname
             stdin=subprocess.PIPE,  # Zum Senden der Eingabe
             stdout=subprocess.PIPE, # Zum Erfassen der Ausgabe
             text=True               # Ein- und Ausgabe als String

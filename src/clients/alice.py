@@ -1,5 +1,4 @@
 import socket
-import assets
 
 PORT = 47183
 

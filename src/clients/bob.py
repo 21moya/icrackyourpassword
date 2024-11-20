@@ -1,6 +1,6 @@
 import socket
-import assets
 import gmpy2
+from utils import helpers
 
 PORT = 8081
 
@@ -22,8 +22,8 @@ def verify_password(student_id, fakeA, small_a, password, HOST):
                 s.sendall(str(fakeA).encode() + b"\n")
 
             elif message.startswith("Please"):
-                key = assets.calc_hash(gmpy2.mpz(decimal), small_a)
-                ct = assets.encrypt_pt(key, password)
+                key = helpers.calc_hash(gmpy2.mpz(decimal), small_a)
+                ct = helpers.encrypt_pt(key, password)
                 s.sendall(ct.encode() + b"\n")
 
             elif message.startswith("Login"):

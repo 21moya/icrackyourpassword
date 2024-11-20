@@ -1,19 +1,19 @@
 import gmpy2
 import random
-import assets
-import Alice
-import Bob
+import utils.helpers as helpers
+import clients.alice as alice
+import clients.bob as bob
 import time
 
 def main():
-    choice = input("local (1) or HS network (2)? ")
-    if choice == "1":
-        HOST = "localhost"
-    elif choice == "2":
-        HOST = "10.32.31.18"
-    else:
-        print("Wrong input detected.")
-        exit(1)
+    # choice = input("local (1) or HS network (2)? ")
+    # if choice == "1":
+    #     HOST = "localhost"
+    # elif choice == "2":
+    #     HOST = "10.32.31.18"
+    # else:
+    #     print("Wrong input detected.")
+    #     exit(1)
 
     student_id = input("Please enter your student ID: ")
     if len(student_id) != 7:
@@ -23,7 +23,7 @@ def main():
     start_time = time.time()
 
     bit_length = 3072
-    prime = gmpy2.mpz(assets.get_file_content("p.txt"))
+    prime = gmpy2.mpz(helpers.get_file_content("p.txt"))
     small_a = random.getrandbits(bit_length)
     small_b = random.getrandbits(bit_length)
     base = 2
@@ -32,19 +32,19 @@ def main():
     fakeB = gmpy2.powmod(base, small_b, prime)
 
     try:
-        alice_data = Alice.get_password(student_id, fakeB, "localhost")
+        alice_data = alice.get_password(student_id, fakeB, "localhost")
     except:
         print("Keine Verbindung zu Alice möglich.")
         exit(1)
 
     alice_A = gmpy2.mpz(alice_data["decimal"])
-    key_alice = assets.calc_hash(alice_A, small_b)
+    key_alice = helpers.calc_hash(alice_A, small_b)
     ct_alice = bytes.fromhex(alice_data["password"])
 
-    pw_decrypted = assets.decrypt_ct(key_alice, ct_alice)
+    pw_decrypted = helpers.decrypt_ct(key_alice, ct_alice)
 
     try:
-        valid = Bob.verify_password(student_id, fakeA, small_a, pw_decrypted, "localhost")
+        valid = bob.verify_password(student_id, fakeA, small_a, pw_decrypted, "localhost")
     except:
         print("Keine Verbindung zu Bob möglich.")
         exit(1)
