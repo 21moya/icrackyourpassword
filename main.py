@@ -6,14 +6,14 @@ import Bob
 import time
 
 def main():
-    #choice = input("local (1) or HS network (2)? ")
-    #if choice == "1":
-    #    HOST = "localhost"
-    #elif choice == "2":
-    #    HOST = "10.32.31.18"
-    #else:
-    #    print("Wrong input detected.")
-    #    exit(1)
+    choice = input("local (1) or HS network (2)? ")
+    if choice == "1":
+        HOST = "localhost"
+    elif choice == "2":
+        HOST = "10.32.31.18"
+    else:
+        print("Wrong input detected.")
+        exit(1)
 
     student_id = input("Please enter your student ID: ")
     if len(student_id) != 7:

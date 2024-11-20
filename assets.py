@@ -1,11 +1,7 @@
 import gmpy2
 import hashlib
 from Crypto.Cipher import AES
-from Crypto.Util.Padding import unpad, pad
-
-def write_to_file(data, file):
-    with open(f"data/{file}", "w") as f:
-        f.write(data)         
+from Crypto.Util.Padding import unpad, pad     
 
 def get_file_content(file):
     with open (f"data/{file}", "r") as f:

@@ -18,7 +18,6 @@ def get_password(student_id, fakeB, HOST):
             elif message.startswith("The decimal"):
                 message = s.recv(4096).decode("utf-8")
                 decimal = message.split("\n")[0]
-                assets.write_to_file(decimal, "Alice.txt")
                 s.sendall(str(fakeB).encode() + b"\n")
 
             elif message.startswith("The hex"):
