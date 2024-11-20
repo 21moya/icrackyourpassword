@@ -1,10 +1,13 @@
+import os
 import gmpy2
 import hashlib
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import unpad, pad     
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__)).split("\\src")[0]
+
 def get_file_content(file):
-    with open (f"data/{file}", "r") as f:
+    with open (os.path.join(BASE_DIR, "data", file), "r") as f:
         str = f.read()
     return str
 
