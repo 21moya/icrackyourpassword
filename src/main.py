@@ -32,7 +32,7 @@ def main():
     fakeB = gmpy2.powmod(base, small_b, prime)
 
     try:
-        alice_data = alice.get_password(student_id, fakeB, "localhost")
+        alice_data = alice.get_password(student_id, fakeB, HOST)
     except:
         print("Keine Verbindung zu Alice möglich.")
         exit(1)
@@ -44,7 +44,7 @@ def main():
     pw_decrypted = helpers.decrypt_ct(key_alice, ct_alice)
 
     try:
-        valid = bob.verify_password(student_id, fakeA, small_a, pw_decrypted, "localhost")
+        valid = bob.verify_password(student_id, fakeA, small_a, pw_decrypted, HOST)
     except:
         print("Keine Verbindung zu Bob möglich.")
         exit(1)
@@ -52,6 +52,7 @@ def main():
     if valid:
          print(f"The decrypted password for your student id is: {pw_decrypted}")
          print(f"Process took {time.time()-start_time:.2f}seconds to complete.")
+         exit()
     else: 
         print("Something went wrong!")
         exit()
