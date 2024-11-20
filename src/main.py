@@ -6,19 +6,24 @@ import clients.bob as bob
 import time
 
 def main():
-    choice = input("local (1) or HS network (2)? ")
-    if choice == "1":
-        HOST = "localhost"
-    elif choice == "2":
-        HOST = "10.32.31.18"
-    else:
-        print("Wrong input detected.")
-        exit(1)
+    while True:
+        choice = input("local (1) or HS network (2)? ")
+        if choice == "1":
+            HOST = "localhost"
+            break
+        elif choice == "2":
+            HOST = "10.32.31.18"
+            break
+        else:
+            print("Wrong input detected.")
 
-    student_id = input("Please enter your student ID: ")
-    if len(student_id) != 7:
-        print("Student ID has to be 7 digits long.")
-        exit(1)
+    while True:
+        student_id = input("Please enter your student ID: ")
+        if len(student_id) != 7:
+            print("Student ID has to be 7 digits long.")
+            continue
+        else: 
+            break
 
     start_time = time.time()
 
@@ -52,10 +57,8 @@ def main():
     if valid:
          print(f"The decrypted password for your student id is: {pw_decrypted}")
          print(f"Process took {time.time()-start_time:.2f}seconds to complete.")
-         exit()
     else: 
         print("Something went wrong!")
-        exit()
 
 if __name__ == "__main__":
     main()
