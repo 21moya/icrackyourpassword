@@ -1,7 +1,8 @@
 
 # icrackyourpassword 🐱‍💻
 
-This is a little tool that helps you decrypting a password sent from Alice to Bob. 
+This is a little tool that helps you decrypting a password sent from Alice to Bob.\
+*(This is for my IT-Security course so you can't really do anything with it, except you're part of it.)*
 
 
 ## Instructions
